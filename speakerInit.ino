@@ -78,6 +78,108 @@ void playTone() {
     }                                
   }                                 
 }
+
+// PLAY TONE  ==============================================
+// Pulse the speaker to play a tone for a particular duration
+void dangerTone() {
+//  int melody[] = {  C,  b,  g,  C,  b,   e,  R,  C,  c,  g, a, C };
+//int beats[]  = { 16, 16, 16,  8,  8,  16, 32, 16, 16, 16, 8, 8 }; 
+//int MAX_COUNT = sizeof(melody) / 2; // Melody length, for looping.
+  long elapsed_time = 0;
+  if (tone_ > 0) { // if this isn't a Rest beat, while the tone has 
+    //  played less long than 'duration', pulse speaker HIGH and LOW
+    while (elapsed_time < duration) {
+
+      digitalWrite(speakerOut,HIGH);
+      delayMicroseconds(tone_ /200);
+
+      // DOWN
+      digitalWrite(speakerOut, LOW);
+      delayMicroseconds(tone_ / 3.14);
+
+      // Keep track of how long we pulsed
+      elapsed_time += (tone_);
+    } 
+  }
+  else { // Rest beat; loop times delay
+    for (int j = 0; j < rest_count; j++) { // See NOTE on rest_count
+      delayMicroseconds(duration);  
+    }                                
+  }                                 
+}
+
+
+// PLAY TONE  ==============================================
+// Pulse the speaker to play a tone for a particular duration
+void happyTone() {
+//  int melody[] = {  C,  b,  g,  C,  b,   e,  R,  C,  c,  g, a, C };
+//int beats[]  = { 16, 16, 16,  8,  8,  16, 32, 16, 16, 16, 8, 8 }; 
+//int MAX_COUNT = sizeof(melody) / 2; // Melody length, for looping.
+  long elapsed_time = 0;
+  if (tone_ > 0) { // if this isn't a Rest beat, while the tone has 
+    //  played less long than 'duration', pulse speaker HIGH and LOW
+    while (elapsed_time < duration) {
+  
+  long randNumber;
+  randNumber = random(1, 4);
+  
+      digitalWrite(speakerOut,HIGH);
+      delayMicroseconds(tone_ / 200);
+
+      // DOWN
+      digitalWrite(speakerOut, LOW);
+      delayMicroseconds(tone_ /4);
+
+      // Keep track of how long we pulsed
+      elapsed_time += (tone_);
+    } 
+  }
+  else { // Rest beat; loop times delay
+    for (int j = 0; j < rest_count; j++) { // See NOTE on rest_count
+      delayMicroseconds(duration);  
+    }                                
+  }                                 
+}
+
+// PLAY TONE  ==============================================
+// Pulse the speaker to play a tone for a particular duration
+void happy2Tone() {
+//  int melody[] = {  C,  b,  g,  C,  b,   e,  R,  C,  c,  g, a, C };
+//int beats[]  = { 16, 16, 16,  8,  8,  16, 32, 16, 16, 16, 8, 8 }; 
+//int MAX_COUNT = sizeof(melody) / 2; // Melody length, for looping.
+  long elapsed_time = 0;
+  if (tone_ > 0) { // if this isn't a Rest beat, while the tone has 
+    //  played less long than 'duration', pulse speaker HIGH and LOW
+    while (elapsed_time < duration) {
+  
+  long randNumber;
+  randNumber = random(1, 4);
+  
+      digitalWrite(speakerOut,HIGH);
+      delayMicroseconds(tone_ /20000 + randNumber);
+
+      // DOWN
+      digitalWrite(speakerOut, LOW);
+      delayMicroseconds(tone_ /4);
+      
+        
+      digitalWrite(speakerOut,HIGH);
+      delayMicroseconds(tone_ /20000 + randNumber + 1000);
+
+      // DOWN
+      digitalWrite(speakerOut, LOW);
+      delayMicroseconds(tone_ /4);
+
+      // Keep track of how long we pulsed
+      elapsed_time += (tone_);
+    } 
+  }
+  else { // Rest beat; loop times delay
+    for (int j = 0; j < rest_count; j++) { // See NOTE on rest_count
+      delayMicroseconds(duration);  
+    }                                
+  }                                 
+}
 // PLAY TONE  ==============================================
 // Pulse the speaker to play a tone for a particular duration
 void warningTone() {
@@ -161,6 +263,63 @@ void warningInit() {
     }
   }
 }
+
+
+// LET THE WILD RUMPUS BEGIN =============================
+void dangerInit() {
+  long randNumber;
+  // Set up a counter to pull from melody[] and beats[]
+  for (int i=0; i<MAX_COUNT; i++) {
+    tone_ = melody[i];
+    beat = beats[i];
+
+    randNumber = random(1, 7);
+    duration = beat * tempo * randNumber / 3.14; // Set up timing
+
+    dangerTone(); 
+    // A pause between notes...
+    delayMicroseconds(pause);
+
+    if (DEBUG) { // If debugging, report loop, tone, beat, and duration
+      Serial.print(i);
+      Serial.print(":");
+      Serial.print(beat);
+      Serial.print(" ");    
+      Serial.print(tone_);
+      Serial.print(" ");
+      Serial.println(duration);
+    }
+  }
+}
+
+// LET THE WILD RUMPUS BEGIN =============================
+void happyInit() {
+  long randNumber;
+  // Set up a counter to pull from melody[] and beats[]
+  for (int i=0; i<MAX_COUNT; i++) {
+    tone_ = melody[i];
+    beat = beats[i];
+
+    randNumber = random(1, 7);
+    duration = beat * tempo * randNumber; // Set up timing
+
+    happyTone(); 
+    happy2Tone();
+    // A pause between notes...
+    delayMicroseconds(pause);
+
+    if (DEBUG) { // If debugging, report loop, tone, beat, and duration
+      Serial.print(i);
+      Serial.print(":");
+      Serial.print(beat);
+      Serial.print(" ");    
+      Serial.print(tone_);
+      Serial.print(" ");
+      Serial.println(duration);
+    }
+  }
+}
+
 //
 ///*
 // * NOTES

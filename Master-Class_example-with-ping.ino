@@ -97,10 +97,18 @@
 #include <Servo.h>
 
 //Ping pins
-#define PINGVCC 41
-#define PINGTRIG 39
-#define PINGECHO 37
-#define PINGGND 35
+#define PINGVCC_1 41
+#define PINGTRIG_1 39
+#define PINGECHO_1 37
+#define PINGGND_1 35
+//Ping pins
+#define PINGVCC_2 33
+#define PINGTRIG_2 31
+#define PINGECHO_2 29
+#define PINGGND_2 27
+
+//audioIn
+#define audioIn A15
 
 // Arduino pins for the shift register
 #define MOTORLATCH 12
@@ -173,6 +181,7 @@ void loop()
 //  delay(1000);
 //  servo_2.write(180);
 //  delay(2000);
+
 pingInit();
 audioInit();
 
