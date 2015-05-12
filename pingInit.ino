@@ -27,11 +27,13 @@ void pingInit(){
   inches_1 = microsecondsToInches(duration_1);
   cm_1 = microsecondsToCentimeters(duration_1);
  
-  Serial.print(inches_1);
-  Serial.print("in_1, ");
-  Serial.print(cm_1);
-  Serial.print("cm_1");
-  Serial.println();
+//  Serial.print(inches_1);
+//  Serial.print("in_1, ");
+//  Serial.print(cm_1);
+//  Serial.print("cm_1");
+//  Serial.println();
+
+
 
   delay(10);
   
@@ -52,11 +54,27 @@ void pingInit(){
   inches_2 = microsecondsToInches(duration_2);
   cm_2 = microsecondsToCentimeters(duration_2);
  
-  Serial.print(inches_2);
-  Serial.print("in_2, ");
-  Serial.print(cm_2);
-  Serial.print("cm_2");
-  Serial.println();
+//  Serial.print(inches_2);
+//  Serial.print("in_2, ");
+//  Serial.print(cm_2);
+//  Serial.print("cm_2");
+//  Serial.println();
+
+  display.update();
+  display.setCursor(0,0);
+  display.setTextSize(1);
+  display.println("Sensor Array");
+  display.println();
+  display.setTextSize(2);
+  display.print(cm_1);
+  display.print("cm_1");
+  display.println();
+
+  display.print(cm_2);
+  display.print("cm_2");
+  display.println();
+  display.update();
+  display.clear();
  
   delay(1);
   
@@ -64,20 +82,31 @@ void pingInit(){
     warningInit();
     motor(1, BRAKE, 255);
     motor(2, BRAKE, 255); 
+    delay(5);
     motor(1, BACKWARD, 255);
     motor(2, FORWARD, 255); 
   }
-  else if(cm_1 < 50 && cm_2 > 50){
-  motor(1, BACKWARD, 255);
-  motor(2, FORWARD, 255); 
+  else if(cm_1 < 60 && cm_2 > 0){
+    motor(1, BRAKE, 255);
+    motor(2, BRAKE, 255); 
+    delay(5);
+    motor(1, BACKWARD, 150);
+    motor(2, FORWARD, 150); 
   }
-  else if(cm_2 < 50 && cm_1 > 50){
-  motor(1, FORWARD, 255);
-  motor(2, BACKWARD, 255); 
+  else if(cm_2 < 60 && cm_1 > 0){
+    motor(1, BRAKE, 255);
+    motor(2, BRAKE, 255); 
+    delay(5);
+  motor(1, FORWARD, 150);
+  motor(2, BACKWARD, 150); 
   }
-  else if(cm_1 && cm_2 >50){
-     motor(1, FORWARD, 255);
-     motor(2, FORWARD, 255); 
+  else if(cm_1 && cm_2 > 50){
+    motor(1, BRAKE, 255);
+    motor(2, BRAKE, 255); 
+    delay(5);
+     motor(1, FORWARD, 155);
+     motor(2, FORWARD, 155); 
+     delay(5);
      dangerInit();
   }
 //  if(cm_1 < 20){

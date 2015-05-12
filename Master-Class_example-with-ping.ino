@@ -1,3 +1,6 @@
+#include <Adafruit_GFX.h>
+#include <Adafruit_ssd1306syp.h>
+
 // Simple Motor Shield sketch
 // -----------------------------------
 //
@@ -144,6 +147,11 @@
 //long randNumber;
 //randNumber = random(10, 29);
 
+//oled screen
+#define SDA_PIN 25
+#define SCL_PIN 23
+Adafruit_ssd1306syp display(SDA_PIN,SCL_PIN);
+
 //audio sensor
 //int incomingAudio;
 
@@ -164,6 +172,7 @@ void setup()
 //  servo_2.attach(SERVO2_PWM);
   speakerSetup();
   playToneInit();
+  display.initialize();
   
 }
 
