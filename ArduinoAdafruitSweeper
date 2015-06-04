@@ -110,8 +110,6 @@
 #define PINGECHO_2 29
 #define PINGGND_2 27
 
-//audioIn
-#define audioIn A15
 
 // Arduino pins for the shift register
 #define MOTORLATCH 12
@@ -152,14 +150,6 @@
 #define SCL_PIN 23
 Adafruit_ssd1306syp display(SDA_PIN,SCL_PIN);
 
-//audio sensor
-//int incomingAudio;
-
-// Declare classes for Servo connectors of the MotorShield.
-//Servo servo_1;
-//Servo servo_2;
-
-
 void setup()
 {
   Serial.begin(9600);
@@ -179,56 +169,9 @@ void setup()
 
 void loop()
 {
-  // Suppose there are two servo motors connected.
-  // Let them move 180 degrees.
-//  servo_1.write(0);  
-//  delay(1000);
-//  servo_1.write(180);
-//  delay(1000);
-//
-//  servo_2.write(0);
-//  delay(1000);
-//  servo_2.write(180);
-//  delay(2000);
 
 pingInit();
 audioInit();
 
-
-  // Suppose there is a relay, or light or solenoid
-  // connected to M3_A and GND.
-  // Note that the 'speed' (the PWM, the intensity) 
-  // is for both M3_A and M3_B.
-  // The output is a push-pull output (half bridge), 
-  // so it can also be used to drive something low.
-  // The 'speed' (the PWM, the intensity) can be set 
-  // to zero, that would make the output disabled 
-  // and floating.
-//  motor_output(MOTOR3_A, HIGH, 255);
-//  delay(20);
-//  motor_output(MOTOR3_A, LOW, 255);
-//  
-//  motor_output(MOTOR3_B, HIGH, 255);
-//  delay(20);
-//  motor_output(MOTOR3_B, LOW, 255);
-
-//
-//  // Suppose a DC motor is connected to M1_A(+) and M1_B(-)
-//  // Let it run full speed forward and half speed backward.
-//  // If 'BRAKE' or 'RELEASE' is used, the 'speed' parameter
-//  // is ignored.
-//  motor(1, FORWARD, 255);
-//  motor(2, FORWARD, 255);
-//  delay(2000);
-//  // Be friendly to the motor: stop it before reverse.
-//  motor(1, RELEASE, 0);
-//  motor(2, RELEASE, 0);
-//  delay(50);
-//  motor(1, BACKWARD, 255);
-//  motor(2, BACKWARD, 255);
-//  delay(2000);
-//  motor(1, RELEASE, 0);
-//  motor(2, RELEASE, 0);
-  
 }
 
